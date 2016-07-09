@@ -2,8 +2,8 @@
 
 - hosts: localhost
   connection: local
-  sudo: yes
-  
+  become: yes
+
   tasks:
     - name: Wait for Marathon to be up
       wait_for: host="{{ansible_default_ipv4.address}}" port=8080 state=started delay=3 timeout=15
