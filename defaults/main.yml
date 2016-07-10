@@ -10,7 +10,7 @@ marathon_apt_repo: "deb http://repos.mesosphere.com/{{ansible_distribution|lower
 marathon_yum_package: "marathon-{{ marathon_version }}"
 mesosphere_yum_repo: "http://repos.mesosphere.com/el/{{ os_version_major }}/noarch/RPMS/{{ mesosphere_releases[os_version_major] }}"
 
-marathon_secure_conf_dir: /etc/marathon/secure
+# default to no secret. Needs to be set in play book
 marathon_secret: ""
 
 marathon_hostname: "{{ inventory_hostname }}"
