@@ -37,10 +37,7 @@
   template: src=http_port.j2 dest=/etc/marathon/conf/http_port
 
 - name: Setup secure directory
-  file: path={{ marathon_secure_conf_dir }} state=directory
-  mode: 0700
-  owner: root
-  group: root
+  file: path={{ marathon_secure_conf_dir }} state=directory mode=0700  owner=root  group=root
 
 - name: Setup Marathon Secret file
   copy: src=marathon_secret.j2 dest="{{ marathon_secure_conf_dir }}/marathon_secret" mode=600
