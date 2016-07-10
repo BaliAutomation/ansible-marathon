@@ -42,6 +42,9 @@
 - name: Setup Marathon Secret file
   template: src=marathon_secret.j2 dest=/etc/marathon/secure/marathon_secret mode=600
 
+- name: Setup rsyslog conf file
+  template: src=rsyslog.conf.j2 dest=/etc/rsyslog.d/marathon.conf
+
 - name: Upstart check
   stat: path=/etc/init/
   register: etc_init_check
