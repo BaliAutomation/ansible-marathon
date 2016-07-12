@@ -3,6 +3,9 @@
 - name: Create Marathon conf directory
   file: path=/etc/marathon/conf state=directory
 
+- name: Create Marathon security directory
+  file: path=/etc/marathon/security state=directory mode=700
+
 - name: Set required --master option
   template: src=master.j2 dest=/etc/marathon/conf/master
 
@@ -37,16 +40,16 @@
   template: src=http_port.j2 dest=/etc/marathon/conf/http_port
 
 - name: Set --mesos_role  option
-  template: src=mesos_role.j2 dest=/etc/marathon/secure/mesos_role mode=600
+  template: src=mesos_role.j2 dest=/etc/marathon/conf/mesos_role
 
 - name: Set --mesos_authentication_principal option
-  template: src=mesos_authentication_principal.j2 dest=/etc/marathon/secure/mesos_authentication_principal mode=600
+  template: src=mesos_authentication_principal.j2 dest=/etc/marathon/conf/mesos_authentication_principal
 
 - name: Set --mesos_authentication_secret_file option
-  template: src=mesos_authentication_secret_file.j2 dest=/etc/marathon/secure/mesos_authentication_secret_file mode=600
+  template: src=mesos_authentication_secret_file.j2 dest=/etc/marathon/conf/mesos_authentication_secret_file
 
 - name: Setup secret file
-  template: src=marathon_secret.j2 dest=/etc/marathon/marathon_secret mode=600
+  template: src=marathon_secret.j2 dest=/etc/marathon/security/marathon_secret mode=600
 
 - name: Setup rsyslog conf file
   template: src=rsyslog.conf.j2 dest=/etc/rsyslog.d/marathon.conf
