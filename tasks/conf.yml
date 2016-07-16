@@ -48,11 +48,11 @@
 - name: Set --http-port option
   template: src=http_port.j2 dest=/etc/marathon/conf/http_port
 
-- name: Set --plugin_dir option
-  template: src=plugin_dir.j2 dest=/etc/marathon/conf/plugin_dir
+- name: Remove --plugin_dir option
+  template: src=plugin_dir.j2 dest=/etc/marathon/conf/plugin_dir  state=absent
 
-- name: Set --plugin_conf option
-  template: src=plugin_conf.j2 dest=/etc/marathon/conf/plugin_conf
+- name: Remove --plugin_conf option
+  template: src=plugin_conf.j2 dest=/etc/marathon/conf/plugin_conf  state=absent
 
 - name: Set --mesos_role  option
   template: src=mesos_role.j2 dest=/etc/marathon/conf/mesos_role
