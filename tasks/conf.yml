@@ -3,6 +3,12 @@
 - name: Create Marathon conf directory
   file: path=/etc/marathon/conf state=directory
 
+- name: Create Marathon plugins directory
+  file: path=/etc/marathon/plugins state=directory
+
+- name: Copy Sensetif Auth plugin
+  copy: src=sensetif-auth.jar dest="/etc/marathon/plugins/sensetif-auth.jar" mode=755
+
 - name: Create Marathon security directory
   file: path=/etc/marathon/security state=directory mode=700
 
