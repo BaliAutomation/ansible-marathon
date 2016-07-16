@@ -2,33 +2,11 @@
   "plugins": {
     "authorization": {
       "plugin": "mesosphere.marathon.plugin.auth.Authorizer",
-      "implementation": "com.sensetif.auth.ConfFileAuthenticator",
-      "tags": [
-        "security"
-      ],
-      "info": {
-        "description": "This is a simple authenticator that reads from a file on the file system. This should be replaced with a LDAP or PAM solution in the future."
-      },
-      "configuration": {
-        "authorization": {
-          "file": "/etc/marathon/security/users.conf"
-        }
-      }
+      "implementation": "com.sensetif.auth.ConfFileAuthenticator"
     },
     "authentication": {
       "plugin": "mesosphere.marathon.plugin.auth.Authenticator",
-      "implementation": "com.sensetif.auth.ConfFileAuthorizer",
-      "tags": [
-        "security"
-      ],
-      "info": {
-        "description": "This is a simple authenticator that reads from a file on the file system. This should be replaced with a LDAP or PAM solution in the future."
-      },
-      "configuration": {
-        "authorization": {
-          "file": "/etc/marathon/security/permissions.conf"
-        }
-      }
+      "implementation": "com.sensetif.auth.ConfFileAuthorizer"
     }
   }
 }
