@@ -12,7 +12,7 @@ mesosphere_yum_repo: "http://repos.mesosphere.com/el/{{ os_version_major }}/noar
 # default to no secret. Needs to be set in play book
 marathon_secret: ""
 
-marathon_hostname: "{{ inventory_hostname }}"
+marathon_hostname: "localhost"
 marathon_port: 8080
 marathon_env_java_opts: '-Xmx512m'
 marathon_env_vars:
