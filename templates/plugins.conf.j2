@@ -1,12 +1,14 @@
 {
-  "plugins": {
-    "authorization": {
-      "plugin": "mesosphere.marathon.plugin.auth.Authorizer",
-      "implementation": "com.sensetif.auth.ConfFileAuthenticator"
-    },
-    "authentication": {
-      "plugin": "mesosphere.marathon.plugin.auth.Authenticator",
-      "implementation": "com.sensetif.auth.ConfFileAuthorizer"
+  "plugins": [
+    {
+      "authorization": {
+        "plugin": "mesosphere.marathon.plugin.auth.Authorizer",
+        "implementation": "com.sensetif.auth.ConfFileAuthenticator"
+      },
+      "authentication": {
+        "plugin": "mesosphere.marathon.plugin.auth.Authenticator",
+        "implementation": "com.sensetif.auth.ConfFileAuthorizer"
+      }
     }
-  }
+  ]
 }
