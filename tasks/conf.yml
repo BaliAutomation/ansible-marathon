@@ -9,6 +9,9 @@
 - name: Copy Sensetif Auth plugin
   copy: src=sensetif-auth.jar dest="/etc/marathon/plugins/sensetif-auth.jar" mode=755
 
+- name: Copy Marathon plugins.conf
+  template: src=plugins.conf dest="/etc/marathon/plugins.conf" mode=755
+
 - name: Create Marathon security directory
   file: path=/etc/marathon/security state=directory mode=700
 
