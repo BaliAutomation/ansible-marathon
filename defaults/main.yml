@@ -1,5 +1,6 @@
 ---
 marathon_version: "0.15.5"
+marathon_framework_name: "marathon""
 
 # Debian: Mesosphere apt repository URL
 marathon_apt_package: "marathon={{ marathon_version }}-1.*"

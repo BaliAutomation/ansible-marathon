@@ -57,6 +57,9 @@
 - name: Set --ssl_keystore_password option
   template: src=ssl_keystore_password.j2 dest=/etc/marathon/conf/ssl_keystore_password
 
+- name: Set --framework_name option
+  template: src=framework_name.j2 dest=/etc/marathon/conf/framework_name
+
 #- name: Set --plugin_dir option
 #  template: src=plugin_dir.j2 dest=/etc/marathon/conf/plugin_dir
 #
