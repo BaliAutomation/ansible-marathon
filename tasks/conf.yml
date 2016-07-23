@@ -49,7 +49,7 @@
   template: src=http_port.j2 dest=/etc/marathon/conf/http_port
 
 - name: Set --http-credentials option
-  template: src=http_credentials.j2 dest=/etc/marathon/conf/http-credentials
+  template: src=http_credentials.j2 dest=/etc/marathon/conf/http_credentials
 
 - name: Set --ssl_keystore_path option
   template: src=ssl_keystore_path.j2 dest=/etc/marathon/conf/ssl_keystore_path
