@@ -28,6 +28,9 @@ mesos_zookeeper_masters: "zk://{{ zookeeper_hostnames }}{{ mesos_zookeeper_path 
 marathon_zookeeper_state: "zk://{{ zookeeper_hostnames }}{{ marathon_zookeeper_path }}"
 haproxy_script_location: "/usr/local/bin"
 
+ssl_keystore_path: ""
+ssl_keystore_password: ""
+
 # optional
 artifact_store: ""
 checkpoint: "true"
