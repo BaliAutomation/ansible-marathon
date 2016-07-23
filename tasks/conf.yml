@@ -15,9 +15,6 @@
 - name: Create Marathon security directory
   file: path=/etc/marathon/security state=directory mode=700
 
-- name: Set required --master option
-  template: src=master.j2 dest=/etc/marathon/conf/master
-
 - name: Remove optional --artifact_store option
   file: path=/etc/marathon/conf/artifact_store state=absent
   when: artifact_store == ""
