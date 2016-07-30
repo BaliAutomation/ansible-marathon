@@ -42,6 +42,9 @@
 - name: Set --hostname option
   template: src=hostname.j2 dest=/etc/marathon/conf/hostname
 
+- name: Set required --master option
+  template: src=master.j2 dest=/etc/marathon/conf/master
+
 - name: Set --http-port option
   template: src=http_port.j2 dest=/etc/marathon/conf/http_port
 
@@ -69,7 +72,6 @@
 
 - name: Remove --plugin_conf option
   file: path=/etc/marathon/conf/plugin_conf state=absent
-
 
 - name: Set --mesos_role  option
   template: src=mesos_role.j2 dest=/etc/marathon/conf/mesos_role
