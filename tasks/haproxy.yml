@@ -7,9 +7,13 @@
   template: src=haproxy_dns_cfg.j2 dest="{{ haproxy_script_location }}/haproxy_dns_cfg" mode=755
   when: haproxy_dir.stat.exists
 
+- name: Copy HAProxy rsyslog config
+  template: src=haproxy_rsyslog.j2 dest=/etc/rsyslog.d/haproxy.conf owner="root" group="root" mode=0744
+  when: haproxy_dir.stat.exists
+  notify: restart rsyslog
+
 - name: Create HAProxy reload script
-  template: src=haproxy_reload.j2 dest={{ haproxy_script_location }}/haproxy_reload
-    owner="root" group="root" mode=0744
+  template: src=haproxy_reload.j2 dest={{ haproxy_script_location }}/haproxy_reload owner="root" group="root" mode=0744
   when: haproxy_dir.stat.exists
 
 - name: Setup cron job for HAProxy
