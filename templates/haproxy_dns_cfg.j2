@@ -135,8 +135,7 @@ function header {
 cat <<\EOF
 global
   daemon
-  log 127.0.0.1 local0
-  log 127.0.0.1 local1 notice
+  log 127.0.0.1 haproxy
   maxconn 4096
 
 defaults
