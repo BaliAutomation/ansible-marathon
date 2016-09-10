@@ -1,5 +1,5 @@
 
-haproxy.*           /var/log/haproxy.log
+local1.*           /var/log/haproxy.log
 
 if $programname == 'haproxy' then {
     action(type="omfile" file="/var/log/haproxy/haproxy.log")
