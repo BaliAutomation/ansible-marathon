@@ -1,7 +1,4 @@
 ---
-- name: restart haproxy
-  service: name=rsyslog state=restarted
-
 - name: restart marathon
   service: name=marathon state=restarted enabled=yes
 

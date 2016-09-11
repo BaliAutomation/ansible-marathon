@@ -57,14 +57,13 @@
   template: src=http_credentials.j2 dest=/etc/marathon/conf/http_credentials
   notify: restart marathon
 
-# I have problem enable https proxying.
-#- name: Set --ssl_keystore_path option
-#  template: src=ssl_keystore_path.j2 dest=/etc/marathon/conf/ssl_keystore_path
-#  notify: restart marathon
-#
-#- name: Set --ssl_keystore_password option
-#  template: src=ssl_keystore_password.j2 dest=/etc/marathon/conf/ssl_keystore_password
-#  notify: restart marathon
+- name: Set --ssl_keystore_path option
+  template: src=ssl_keystore_path.j2 dest=/etc/marathon/conf/ssl_keystore_path
+  notify: restart marathon
+
+- name: Set --ssl_keystore_password option
+  template: src=ssl_keystore_password.j2 dest=/etc/marathon/conf/ssl_keystore_password
+  notify: restart marathon
 
 - name: Set --framework_name option
   template: src=framework_name.j2 dest=/etc/marathon/conf/framework_name
@@ -108,4 +107,3 @@
 - name: systemd environment variables
   template: src=sysconfig.j2 dest=/etc/sysconfig/marathon 
   notify: restart marathon
-
