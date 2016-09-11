@@ -1,16 +1,14 @@
 ---
 - include_vars: "{{ ansible_os_family }}.yml"
 
-- include: Debian.yml
-  when: ansible_os_family == "Debian"
+- name: Add mesosphere repo
+  yum: pkg={{ mesosphere_yum_repo }} state=present
 
-- include: RedHat.yml
-  when: ansible_os_family == "RedHat"
+- name: Install Marathon
+  yum: pkg={{ marathon_yum_package }} state=present
 
 - include: conf.yml
 
 - include: haproxy.yml
   when: haproxy_script_location != ""
 
-- name: Start Marathon service
-  service: name=marathon state=restarted enabled=yes 

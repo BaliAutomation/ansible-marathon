@@ -1,6 +1,0 @@
----
-- name: Add mesosphere repo
-  yum: pkg={{ mesosphere_yum_repo }} state=present
-
-- name: Install Marathon
-  yum: pkg={{ marathon_yum_package }} state=present

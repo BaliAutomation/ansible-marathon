@@ -30,6 +30,7 @@
 - name: Set optional --checkpoint option
   file: path=/etc/marathon/conf/?checkpoint state=touch
   when: checkpoint != ""
+  notify: restart marathon
 
 - name: Remove optional --zk option
   file: path=/etc/marathon/conf/zk state=absent
@@ -38,27 +39,36 @@
 - name: Set optional --zk option
   template: src=zk.j2 dest=/etc/marathon/conf/zk
   when: marathon_zookeeper_state != ""
+  notify: restart marathon
 
 - name: Set --hostname option
   template: src=hostname.j2 dest=/etc/marathon/conf/hostname
+  notify: restart marathon
 
 - name: Set required --master option
   template: src=master.j2 dest=/etc/marathon/conf/master
+  notify: restart marathon
 
 - name: Set --http-port option
   template: src=http_port.j2 dest=/etc/marathon/conf/http_port
+  notify: restart marathon
 
 - name: Set --http-credentials option
   template: src=http_credentials.j2 dest=/etc/marathon/conf/http_credentials
+  notify: restart marathon
 
-- name: Set --ssl_keystore_path option
-  template: src=ssl_keystore_path.j2 dest=/etc/marathon/conf/ssl_keystore_path
-
-- name: Set --ssl_keystore_password option
-  template: src=ssl_keystore_password.j2 dest=/etc/marathon/conf/ssl_keystore_password
+# I have problem enable https proxying.
+#- name: Set --ssl_keystore_path option
+#  template: src=ssl_keystore_path.j2 dest=/etc/marathon/conf/ssl_keystore_path
+#  notify: restart marathon
+#
+#- name: Set --ssl_keystore_password option
+#  template: src=ssl_keystore_password.j2 dest=/etc/marathon/conf/ssl_keystore_password
+#  notify: restart marathon
 
 - name: Set --framework_name option
   template: src=framework_name.j2 dest=/etc/marathon/conf/framework_name
+  notify: restart marathon
 
 #- name: Set --plugin_dir option
 #  template: src=plugin_dir.j2 dest=/etc/marathon/conf/plugin_dir
@@ -69,39 +79,33 @@
 
 - name: Remove --plugin_dir option
   file: path=/etc/marathon/conf/plugin_dir state=absent
+  notify: restart marathon
 
 - name: Remove --plugin_conf option
   file: path=/etc/marathon/conf/plugin_conf state=absent
+  notify: restart marathon
 
 - name: Set --mesos_role  option
   template: src=mesos_role.j2 dest=/etc/marathon/conf/mesos_role
+  notify: restart marathon
 
 - name: Set --mesos_authentication_principal option
   template: src=mesos_authentication_principal.j2 dest=/etc/marathon/conf/mesos_authentication_principal
+  notify: restart marathon
 
 - name: Set --mesos_authentication_secret_file option
   template: src=mesos_authentication_secret_file.j2 dest=/etc/marathon/conf/mesos_authentication_secret_file
+  notify: restart marathon
 
 - name: Setup secret file
   template: src=marathon_secret.j2 dest=/etc/marathon/security/marathon_secret mode=600
+  notify: restart marathon
 
 - name: Setup rsyslog conf file
   template: src=rsyslog.conf.j2 dest=/etc/rsyslog.d/marathon.conf
+  notify: restart rsyslog
 
-- name: Upstart check
-  stat: path=/etc/init/
-  register: etc_init_check
-
-- name: systemd check
-  stat: path=/usr/lib/systemd/system/
-  register: systemd_check
-  
-- name: Upstart environment variables 
-  lineinfile: dest=/etc/init/marathon.conf backup=yes state=present insertbefore='exec.*' line="env {{ item }}"
-  with_items: "{{marathon_env_vars}}"
-  when: etc_init_check.stat.exists == true
-  
 - name: systemd environment variables
   template: src=sysconfig.j2 dest=/etc/sysconfig/marathon 
-  when: systemd_check.stat.exists == true
+  notify: restart marathon
 

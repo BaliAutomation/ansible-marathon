@@ -8,7 +8,7 @@ listen marathon
   mode http
   option httplog
   log 127.0.0.1 local1
-  server marathon 127.0.0.1:8443 maxconn 32
+  server marathon 127.0.0.1:8080 maxconn 32
 " >> /etc/haproxy/haproxy.cfg
 
 /bin/systemctl restart haproxy.service
