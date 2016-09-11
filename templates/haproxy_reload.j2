@@ -2,9 +2,12 @@
 
 {{ haproxy_script_location }}/haproxy_dns_cfg {{inventory_hostname}}:8080 > /etc/haproxy/haproxy.cfg
 
+# replace bind later with
+#     bind *:443 ssl crt /etc/ssl/xip.io/xip.io.pem
+
 echo "
 listen marathon
-  bind *:443
+  bind *:80
   mode http
   option httplog
   log 127.0.0.1 local1
@@ -12,3 +15,9 @@ listen marathon
 " >> /etc/haproxy/haproxy.cfg
 
 /bin/systemctl restart haproxy.service
+
+
+
+
+
+
